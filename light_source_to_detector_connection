@@ -1,5 +1,4 @@
-import math
-
+mport math
 from sequence.kernel.timeline import Timeline
 from sequence.kernel.event import Event
 from sequence.kernel.process import Process
@@ -8,11 +7,9 @@ from sequence.components.light_source import polarization
 from sequence.components.optical_channel import QuantumChannel
 from sequence.components.detector import Detector
 from sequence.topology.node import Node
-#import * = import everything
+
 NUM_TRIALS = 1000
 FREQUENCY = 1e3
-
-#import
 
 class Counter():
     def __init__(self):
@@ -20,17 +17,6 @@ class Counter():
 
     def trigger(self, detector, info):
         self.count += 1
-
-#sender node = process mirror_experiment.py
-"""class SenderNode(Node):
-    def __init__(self, name, timeline):
-        super().__init__(name, timeline)
-        self.light_source = LightSource(name, timeline, frequency=8000000, mean_photon_num=1 )
-        self.light_source.owner = self"""
-
-#QKD node - qkd protocol, polarization basis and states together: if in this basis at this polarization it's in this state
-
-# mean photon probs : probability of sending a photon: 10% is realistic
 
 class ReceiverNode(Node):
     def __init__(self, name, timeline):
@@ -63,16 +49,7 @@ if __name__ == "__main__":
     
     #Process -> for memory not light source
     process1 = Process(node1,light_source, "emit", [[((1+0j),0j)], ["node2"]])
-    #process1 = Process(node1.light_source, "update_state", [[complex(math.sqrt(1/2)), complex(math.sqrt(1/2))]])
-    #process2 = Process(node1.light_source, "excite", ["node2"])
-    #for i in range(NUM_TRIALS):
-     #   event1 = Event(i * time_bin, process1)
-      #  event2 = Event(i * time_bin + (time_bin / 2), process2)
-       # tl.schedule(event1)
-        #tl.schedule(event2)
 
-#light source emit - give it a state
-#enumare function - encoding type
 event1=Event(0,process1)
     tl.init()
     tl.run()
